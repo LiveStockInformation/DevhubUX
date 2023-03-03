@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Component renders without crashing 1`] = `
+<DocumentFragment>
+  <header
+    class="header"
+  >
+    <div
+      class="phase-banner"
+    >
+      <p
+        class="phase-banner__content"
+      >
+        <span
+          class="phase-banner__text"
+        >
+          The Sheep Service went live 28th March 2022, Cattle Service coming soon.
+        </span>
+      </p>
+    </div>
+    <div
+      class="header__content"
+    >
+      <a
+        class="header__skip-link"
+        href="#main-content"
+      >
+        Skip to main content
+      </a>
+      <div
+        class="header__ls-logo"
+      >
+        <a
+          class="header__ls-logo-link"
+          href="/"
+        >
+          <span
+            class="vis-hide"
+          >
+            Livestock Developer Hub
+          </span>
+        </a>
+      </div>
+      <div
+        class="header__title"
+      >
+        <button
+          aria-controls="navigation"
+          aria-expanded="false"
+          aria-label="Show or hide main menu"
+          class="header__toggle-button "
+          type="button"
+        >
+          <span
+            class="vis-hide"
+          >
+            Menu
+          </span>
+        </button>
+      </div>
+    </div>
+    <nav
+      aria-label="main-navigation"
+      class="header__navigation "
+    >
+      <div
+        class="header__navigation-content"
+      >
+        <ul
+          aria-label="Top Level Navigation"
+          class="header__navigation-list"
+          id="navigation"
+        >
+          <li
+            class="header__navigation-item header__navigation-item--active"
+          >
+            <a
+              class="ls-link header__link"
+              href="/"
+            >
+              Home
+            </a>
+          </li>
+          <li
+            class="header__navigation-item "
+          >
+            <a
+              class="ls-link header__link"
+              href="/documentation/using-the-developer-hub"
+            >
+              Overview
+            </a>
+          </li>
+          <li
+            class="header__navigation-item "
+          >
+            <a
+              class="ls-link header__link"
+              href="/services"
+            >
+              LI Services
+            </a>
+          </li>
+          <li
+            class="header__navigation-item "
+          >
+            <a
+              class="ls-link header__link"
+              href="/apis"
+            >
+              APIs
+            </a>
+          </li>
+          <li
+            class="header__navigation-item "
+          >
+            <a
+              class="ls-link header__link"
+              href="/my-apps-and-data"
+            >
+              My Apps & Data
+            </a>
+          </li>
+          <li
+            class="header__navigation-item "
+          >
+            <a
+              class="ls-link header__link"
+              href="/support"
+            >
+              Support
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+</DocumentFragment>
+`;

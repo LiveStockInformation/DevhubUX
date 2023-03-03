@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import { LsLink } from '../../components/LsLink'
+import { LsLink } from '../LsLink'
+
+
+import { getContent } from '../../content/site'
+
 import styles from './Header.module.scss'
-import cx from 'classnames'
 
+const content = getContent('heading')
+const appContent = getContent('app')
 
-
-const Header = () => {
+const Header = ({ highlight }) => {
   const router = useRouter()
   const [navToggled, setNavToggled] = useState(false)
 
@@ -19,11 +23,11 @@ const Header = () => {
     <header className={styles['header']}>
       <div className={styles['header__content']}>
         <a href='#main-content' className={styles['header__skip-link']}>
-          skip
+          {content.skipToMain}
         </a>
         <div className={styles['header__ls-logo']}>
           <a href='/' className={styles['header__ls-logo-link']}>
-            <span className='vis-hide'>Portal </span>
+            <span className='vis-hide'>{appContent.portalName}</span>
           </a>
         </div>
         <div className='header__title'>
@@ -36,35 +40,43 @@ const Header = () => {
             }
             aria-controls='navigation'
             onClick={toggleNav}
-            aria-label={'Menu'}
+            aria-label={content.menuA11y}
             aria-expanded={navToggled}
           >
-            <span className='vis-hide'>text</span>
+            <span className='vis-hide'>{content.menu}</span>
           </button>
         </div>
       </div>
       <nav
-        className={cx(
-          styles['header__navigation'] + ' ' + (navToggled ? styles['header__navigation--open'] : ''),
-          (router.pathname === '/' ? 'hidden' : ''), 
-          (router.pathname === '/success' ? 'hidden' : '')
-        )}
+        aria-label='main-navigation'
+        className={
+          styles['header__navigation'] +
+          ' ' +
+          (navToggled ? styles['header__navigation--open'] : '')
+        }
       >
         <div className={styles['header__navigation-content']}>
-        <ul
+          <ul
             id='navigation'
-            className={cx(
-              styles['header__navigation-list']
-            )}
+            className={styles['header__navigation-list']}
+            aria-label={content.navigationA11y}
           >
-  
+            {content.navigation.map((nav) => {
+              return (
                 <li
-                  className={`${styles['header__navigation-item']}`}
+                  className={`${styles['header__navigation-item']} ${
+                   highlight === nav.url
+                      ? styles['header__navigation-item--active']
+                      : ''
+                  }`}
+                  key={nav.title}
                 >
-                  <LsLink url="/"  className={styles['header__link']}>
-                   Home
+                  <LsLink url={nav.url} className={styles['header__link']}>
+                    {nav.title}
                   </LsLink>
-             </li>
+                </li>
+              )
+            })}
           </ul>
         </div>
       </nav>

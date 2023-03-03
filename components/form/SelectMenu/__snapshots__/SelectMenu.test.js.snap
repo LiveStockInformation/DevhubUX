@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectMenu Component renders without crashing 1`] = `
+<DocumentFragment>
+  <div
+    class="ls-form-group  "
+  >
+    <div
+      class="ls-select"
+    >
+      <label
+        class="ls-label "
+        for="Test"
+      >
+        Test
+      </label>
+      <select
+        class="ls-select"
+        id="Test"
+      >
+        <option
+          value="1"
+        >
+          Item 1
+        </option>
+        <option
+          value="2"
+        >
+          Item 2
+        </option>
+      </select>
+    </div>
+  </div>
+</DocumentFragment>
+`;

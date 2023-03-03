@@ -1,84 +1,38 @@
-import React from "react";
+import React from 'react'
+import { LsLink } from '../LsLink'
 
-
-import styles from "./Footer.module.scss";
+import styles from './Footer.module.scss'
 
 const Footer = () => {
   return (
-    <footer className={styles["footer"]}>
-      <div className={styles["footer__content"]}>
-        <div className={styles["footer__content-container"]}>
-          <span>LIP Information</span>
-          <nav
-            aria-label="LIP Information"
-            className="footer_nav__NFi4t"
-            id="informationNav"
-          >
-            <ul>
-              <li className="footer_info__enBSd">
-                <a
-                  href="https://livestockinformation.org.uk/privacy/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Privacy policy
-                </a>
-              </li>
-              <li className="footer_info__enBSd">
-                <a
-                  href="https://livestockinformation.org.uk/cookies/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Cookies
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div className={styles["footer__content-container"]}>
-          <span>Contact us</span>
-          <nav
-            aria-label="Contact us"
-            className="footer_nav__NFi4t"
-            id="contactUsNav"
-          >
-            <ul>
-              <li className="footer_info__enBSd">
-                <a
-                  href="https://livestockinformation.org.uk/lis-support/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Customer support / Contact us
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        <div className={styles["footer__content-container"]}>
-          <span>Defra guidance</span>
-          <nav
-            aria-label="Defra guidance"
-            className="footer_nav__NFi4t"
-            id="defraNav"
-          >
-            <ul>
-              <li className="footer_info__enBSd">
-                <a
-                  href="https://www.gov.uk/guidance/sheep-and-goat-keepers-how-to-report-animal-movements"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Reporting sheep movements
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+    <footer className={styles['footer']}>
+      <div className={styles['footer__content']}>
+        <p className='ls-visually-hidden'>Footer links</p>
+        <ul className={styles['footer__inline-list']}>
+          <li className={styles['footer__inline-list-item']}>
+            <LsLink className={styles['footer__link']} url='/cookies'>
+              Cookies
+            </LsLink>
+          </li>
+          <li className={styles['footer__inline-list-item']}>
+            <LsLink className={styles['footer__link']} url='/privacy-policy'>
+              Privacy policy
+            </LsLink>
+          </li>
+          <li className={styles['footer__inline-list-item']}>
+            <LsLink className={styles['footer__link']} url='/terms-and-conditions'>
+              Terms and conditions
+            </LsLink>
+          </li>
+          <li className={styles['footer__inline-list-item']}>
+            <LsLink className={styles['footer__link']} url='/accessibility-statement'>
+              Accessibility statement
+            </LsLink>
+          </li>
+        </ul>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

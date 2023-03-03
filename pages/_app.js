@@ -2,7 +2,7 @@ import "../styles/main.scss";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div className="cla-main-container">
+    <div className="ls-main-container">
       <Component {...pageProps} />
     </div>
   );
