@@ -18,23 +18,23 @@ const data = {
       },
       {
         title: 'Overview',
-        url: '/documentation/using-the-developer-hub'
+        url: '/'
       },
       {
         title: 'LI Services',
-        url: '/services'
+        url: '/'
       },
       {
         title: 'APIs',
-        url: '/apis'
+        url: '/'
       },
       {
         title: 'My Apps & Data',
-        url: '/my-apps-and-data'
+        url: '/'
       },
       {
         title: 'Support',
-        url: '/support'
+        url: '/'
       }
     ]
   },

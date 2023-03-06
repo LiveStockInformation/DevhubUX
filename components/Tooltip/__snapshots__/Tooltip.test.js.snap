@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tooltip component renders without crashing 1`] = `
+<DocumentFragment>
+  <div
+    class="tooltip  "
+  >
+    <button
+      aria-label="Tooltip"
+      aria-labelledby="tooltip"
+      class="tooltip__btn"
+    >
+      <span
+        class="visually-hidden"
+      >
+        Helpful Tooltip
+      </span>
+    </button>
+    <div
+      class="tooltip__popper "
+      id="tooltip"
+      role="tooltip"
+    >
+      <div
+        class="tooltip__popper-content"
+      >
+        Test tooltip
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
