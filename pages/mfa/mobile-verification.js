@@ -22,11 +22,12 @@ export default function Home() {
       heading: "Please fill in the empty required fields, as hightlighted.",
     },
     confirmMobileErrors: {
-      heading: "The verifcation code is not 6 digits.",
+      heading: "The verifcation code you have entered needs to be 6 digits.",
     }
   };
 
   let summary = [];
+
   const [errorHeadings, setErrorHeadings] = useState([]);
   const [confirmMobile, setConfirmMobile] = useState("");
   const [showErrorSummary, setShowErrorSummary] = useState(false);
@@ -56,11 +57,9 @@ export default function Home() {
       }
     }
 
-
     let unique = [...new Set(summary)];
 
     setErrorHeadings(unique)
-
 
     if(unique.length > 0) {
       setShowErrorSummary(true);
@@ -97,7 +96,6 @@ export default function Home() {
             </div>
           </div>
           <form onSubmit={submitForm} >
-          
             <Input
               error={errorMobile}
               label="Enter the 6 digit verification code"
@@ -105,7 +103,6 @@ export default function Home() {
               value={confirmMobile}
               maxLength={6}
             />
-           
             <p className="m--b-xlarge">
               There's a problem with my code? <LsLink>Re-try sending code</LsLink>
             </p>

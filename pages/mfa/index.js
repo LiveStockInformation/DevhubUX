@@ -68,10 +68,8 @@ export default function Home() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorConfirmPassword, setErrorConfirmPassword] = useState(false);
-
 
   const setFirstNameMethod = (event) => {
     const firstNameText = event.target.value;
