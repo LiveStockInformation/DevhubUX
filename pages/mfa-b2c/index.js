@@ -118,7 +118,7 @@ export default function Home() {
     "^[a-zA-Z0-9.!#$%&’'`*+/=?^_{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"
   );
 
-  const namePattern = /[A-Z].*\d|\d.*[A-Z]/;
+  const namePattern =/^[a-z ,.'-]+$/i;
 
   const submitForm = (event) => {
     event.preventDefault();
