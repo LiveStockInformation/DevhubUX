@@ -31,9 +31,6 @@ export default function Home() {
     lastNameErrors: {
       heading: "The last name you've provided contains special characters.",
     },
-    organisatationErrors: {
-      heading: "You have not selected an orgainisation from the list.",
-    },
     emailErrors: {
       heading: "The email you provided is not valid.",
       format: "Email does not follow the correct email format.",
@@ -42,11 +39,11 @@ export default function Home() {
       heading: "Your mobile is not a UK valid number.",
     },
     passwordErrors: {
-      heading: "The password you have entered is not valid.",
-      uppercase: "The password must contain at least 1 Uppercase character.",
-      lowercase: "The password must contain at least 1 Lowercase character.",
-      number: "The password must contain at least 1 Number.",
-      symbol: "The password must contain at least 1 Symbol.",
+      heading: "The password you entered doesn't meet our password policy requirements:",
+      uppercase: "The password must contain at least 1 uppercase letter.",
+      lowercase: "The password must contain at least 1 Lowercase letter.",
+      number: "The password must contain at least 1 number.",
+      symbol: "The password must contain at least 1 symbol.",
       length: "The password must be at least 8 characters long.",
     },
     confirmPasswordErrors: {
