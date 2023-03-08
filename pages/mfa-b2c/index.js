@@ -9,12 +9,11 @@ import { Breadcrumbs } from "../../components/Breadcrumbs";
 import { LsLink } from "../../components/LsLink";
 import { Input } from "../../components/form/Input";
 import { SelectMenu } from "../../components/form/SelectMenu";
-import { Tooltip } from "../../components/Tooltip";
+
 
 export default function Home() {
-  
   const router = useRouter();
-  
+
   const breadcrumbs = ["home"];
   const organisations = [
     { label: "Select Organisation", value: "Select Organisation" },
@@ -43,31 +42,37 @@ export default function Home() {
       heading: "Your mobile is not a UK valid number.",
     },
     passwordErrors: {
-      heading: "The password you have entered is not valid. Your Password must contain  at least 1 uppercase letter, 1 lowercase letter, 1 special character and 1 number. ",
+      heading: "The password you have entered is not valid.",
+      uppercase: "The password must contain at least 1 Uppercase character.",
+      lowercase: "The password must contain at least 1 Lowercase character.",
+      number: "The password must contain at least 1 Number.",
+      symbol: "The password must contain at least 1 Symbol.",
+      length: "The password must be at least 8 characters long.",
     },
     confirmPasswordErrors: {
-      heading: "The confirmation password you have entered does not match the password. ",
+      heading:
+        "The confirmation password you have entered does not match the password. ",
     },
-  
   };
 
   let summary = [];
-  const [errorHeadings, setErrorHeadings] = useState([]);
+  let listSummary = [];
+
+  
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
   const [organisation, setOrganisation] = useState("Select Organisation");
-  const [showErrorSummary, setShowErrorSummary] = useState(false);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [errorHeadings, setErrorHeadings] = useState([]);
+  const [errorList, setErrorList] = useState([]);
+  const [showErrorSummary, setShowErrorSummary] = useState(false);
   const [errorFirstName, setErrorFirstName] = useState(false);
   const [errorLastName, setErrorLastName] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorOrganisation, setErrorOrganisation] = useState(false);
-  const [errorMobile, setErrorMobile] = useState(false);
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorConfirmPassword, setErrorConfirmPassword] = useState(false);
 
@@ -91,11 +96,6 @@ export default function Home() {
     setEmail(emailText);
   };
 
-  const setMobileNumberMethod = (event) => {
-    const mobileNumber = event.target.value;
-    setMobileNumber(mobileNumber);
-  };
-
   const setPasswordMethod = (event) => {
     const passwordText = event.target.value;
     setPassword(passwordText);
@@ -106,18 +106,19 @@ export default function Home() {
     setConfirmPassword(passwordConfirmText);
   };
 
+  const uppercasePattern = /[A-Z]/;
 
+  const lowercasePattern = /[a-z]/;
+
+  const numberPattern = /[0-9]/;
+
+  const symbolPattern = /[^A-Za-z0-9]/;
 
   const emailPattern = RegExp(
     "^[a-zA-Z0-9.!#$%&’'`*+/=?^_{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"
-  )
+  );
 
-  const namePattern =/^[a-z ,.'-]+$/i;
-
-  const mobilePattern = /^(?:(?:00)?44|0)7(?:[45789]\d{2}|624)\d{6}$/;
-
-
-  const passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/
+  const namePattern = /[A-Z].*\d|\d.*[A-Z]/;
 
   const submitForm = (event) => {
     event.preventDefault();
@@ -126,7 +127,7 @@ export default function Home() {
       summary.push(errorMessages.emptyFields.heading);
     } else {
       setErrorFirstName(false);
-      setErrorHeadings([])
+      setErrorHeadings([]);
       if (!namePattern.test(firstName)) {
         setErrorFirstName("Please enter a valid first name");
         summary.push(errorMessages.firstNameErrors.heading);
@@ -137,7 +138,8 @@ export default function Home() {
       summary.push(errorMessages.emptyFields.heading);
     } else {
       setErrorLastName(false);
-      setErrorHeadings([])
+      setErrorHeadings([]);
+      setErrorList([]);
       if (!namePattern.test(lastName)) {
         setErrorLastName("Please enter a valid last name");
         summary.push(errorMessages.lastNameErrors.heading);
@@ -147,59 +149,79 @@ export default function Home() {
       setErrorOrganisation("Please select organisation");
       summary.push(errorMessages.emptyFields.heading);
     } else {
-      setErrorOrganisation(false)
-      setErrorHeadings([])
+      setErrorOrganisation(false);
+      setErrorHeadings([]);
+      setErrorList([]);
     }
     if (email === "") {
       setErrorEmail("Please enter your email");
       summary.push(errorMessages.emptyFields.heading);
     } else {
       setErrorEmail(false);
-      setErrorHeadings([])
+      setErrorHeadings([]);
+      setErrorList([]);
       if (!emailPattern.test(email)) {
         setErrorEmail("Please enter a valid email");
         summary.push(errorMessages.emailErrors.heading);
       }
     }
-      if (password === "") {
-        setErrorPassword("Please enter a password");
-        summary.push(errorMessages.emptyFields.heading);
-      } else {
-        setErrorPassword(false);
-        setErrorHeadings([])
-        if (!passwordPattern.test(password)) {
-          setErrorPassword("Please enter a valid password");
-          summary.push(errorMessages.passwordErrors.heading);
-        }
+    if (password === "") {
+      setErrorPassword("Please enter a password");
+      summary.push(errorMessages.emptyFields.heading);
+    } else {
+      setErrorPassword(false);
+      setErrorHeadings([]);
+      setErrorList([]);
+      if (!uppercasePattern.test(password)) {
+        setErrorPassword("Please enter a valid password");
+        summary.push(errorMessages.passwordErrors.heading);
+        listSummary.push(errorMessages.passwordErrors.uppercase);
       }
-      if (confirmPassword === "") {
-        setErrorConfirmPassword("Please confirm a password");
-        summary.push(errorMessages.emptyFields.heading);
-      } else {
-        setErrorConfirmPassword(false);
-        setErrorHeadings([])
-        if (!passwordPattern.test(confirmPassword)) {
-          setErrorConfirmPassword("Please enter a valid password");
-          summary.push(errorMessages.passwordErrors.heading);
-        }
-        if (confirmPassword !== password) {
-          setErrorConfirmPassword("Sorry, your password does not match");
-          summary.push(errorMessages.confirmPasswordErrors.heading);
-        }
+      if (!lowercasePattern.test(password)) {
+        setErrorPassword("Please enter a valid password");
+        summary.push(errorMessages.passwordErrors.heading);
+        listSummary.push(errorMessages.passwordErrors.lowercase);
       }
-   
+      if (!numberPattern.test(password)) {
+        setErrorPassword("Please enter a valid password");
+        summary.push(errorMessages.passwordErrors.heading);
+        listSummary.push(errorMessages.passwordErrors.number);
+      }
+      if (!symbolPattern.test(password)) {
+        setErrorPassword("Please enter a valid password");
+        listSummary.push(errorMessages.passwordErrors.symbol);
+      }
+      if (password.length < 8) {
+        setErrorPassword("Please enter a valid password");
+        summary.push(errorMessages.passwordErrors.heading);
+        listSummary.push(errorMessages.passwordErrors.length);
+      }
+    }
+    if (confirmPassword === "") {
+      setErrorConfirmPassword("Please confirm a password");
+      summary.push(errorMessages.emptyFields.heading);
+    } else {
+      setErrorConfirmPassword(false);
+      setErrorHeadings([]);
+      setErrorList([]);
+      if (confirmPassword !== password) {
+        setErrorConfirmPassword("Sorry, your password does not match");
+        summary.push(errorMessages.confirmPasswordErrors.heading);
+      }
+    }
 
     let unique = [...new Set(summary)];
 
-    setErrorHeadings(unique)
-   
-    if(unique.length > 0) {
+    setErrorHeadings(unique);
+
+    setErrorList(listSummary);
+
+    if (unique.length > 0) {
       setShowErrorSummary(true);
-    }else {
-      setShowErrorSummary(false)
+    } else {
+      setShowErrorSummary(false);
       router.push("/mfa-b2c/email-verification");
     }
-   
   };
 
   return (
@@ -226,6 +248,11 @@ export default function Home() {
               {errorHeadings.map((error, i) => {
                 return <p key={i}>{error}</p>;
               })}
+              <ul>
+                {errorList.map((error, i) => {
+                  return <li key={i}>{error}</li>;
+                })}
+              </ul>
             </div>
           </div>
           <form onSubmit={submitForm}>
@@ -243,7 +270,7 @@ export default function Home() {
               value={lastName}
               placeholder="Last Name"
             />
-           
+
             <Input
               error={errorEmail}
               label="Email address"
@@ -251,7 +278,7 @@ export default function Home() {
               value={email}
               placeholder="Email address"
             />
-           
+
             <SelectMenu
               error={errorOrganisation}
               defaultValue={organisation}
@@ -260,8 +287,11 @@ export default function Home() {
               label="Select Organisation"
             />
 
-            <p>Please contact our <LsLink>support</LsLink> team, if your orgainisation is not available. </p>
-              
+            <p>
+              Please contact our <LsLink>support</LsLink> team, if your
+              orgainisation is not available.{" "}
+            </p>
+
             <Input
               error={errorPassword}
               label="Create Password"
